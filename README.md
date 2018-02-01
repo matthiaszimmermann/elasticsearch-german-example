@@ -1,9 +1,9 @@
-# Elasticsearch Example Usage for German Language
+# Elasticsearch Example Usage for German Language
 
 This repo walks you through download, installation and usage for German text retrieval.
 It contains all necessary ingredients to build a custom German analyzer including stopping, stemming and working with synonyms.
 
-## Download, Install and run Elasticsearch
+## Download, Install and run Elasticsearch
 
 Start with cloning this repo. Then, build the custom Docker image including Elasticsearch and some example configuration and data files. The custom image is directly based on the original Elasticsearch Dockerfile setup described [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html).
 
@@ -18,9 +18,9 @@ docker run -d -p 9200:9200 elasticsearch.custom
 docker exec <container-id> bash initialize.sh
 ```
 
-The container id can be obtained by checking the hash provided by ```dockder ps```. Your Elasticsearch instance should now be up and running on port 9200.
+The container id can be obtained by checking the hash provided by ```docker ps```. Your Elasticsearch instance should now be up and running on port 9200.
 
-## Verify the running Elasticsearch
+## Verify the running Elasticsearch
 
 To verify the correct running of your container you may check the respones by any of the following urls.
 
@@ -42,7 +42,7 @@ curl -X POST localhost:9200/texts/text?pretty --header "Content-Type: applicatio
 '
 ```
 
-## Checking the Text Processing Pipeline
+## Checking the Text Processing Pipeline
 
 Many aspects of the Elasticsearch text processing pipeline are described [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html).
 
@@ -53,9 +53,9 @@ For the definition of the custom German analyzer and its usage for the indexing 
 
 The [settings](http://localhost:9200/texts/_settings?pretty) link shows the definition of our custom analyzer ```custom_german_analyzer``` (see file ```synonym.txt``` in this repository for . referenced synonyms).
 
-The [mappings](http://localhost:9200/texts/_mappings?pretty) link defines which document attributes will analyzed by which  analyzers. In this example field ```title``` is analyzed using the standard (default) analyizer while the additionally defined field ```title.german``` is analyzed with our custom German analyzer ```custom_german_analyzer``` 
+The [mappings](http://localhost:9200/texts/_mappings?pretty) link defines which document attributes will analyzed by which  analyzers. In this example field ```title``` is analyzed using the standard (default) analyizer while the additionally defined field ```title.german``` is analyzed with our custom German analyzer ```custom_german_analyzer```.
 
-## Check the output of the German Custom Analyzer
+## Check the output of the German Custom Analyzer
 
 To check how the specified analyzer works with provided text you may use the analyze end point of the [Indices API](https://www.elastic.co/guide/en/elasticsearch/reference/6.1/indices-analyze.html).
 
