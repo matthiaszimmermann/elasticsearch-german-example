@@ -1,0 +1,6 @@
+# Elasticsearch synonym handling according to
+# https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-synonym-tokenfilter.html
+
+# star wars terms
+bb 8 => bb8
+millennium falcon => millenniumfalcon

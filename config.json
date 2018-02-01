@@ -1,0 +1,56 @@
+{
+  "settings": {
+    "analysis": {
+      "filter" : {
+        "custom_synonym" :  {
+          "type" : "synonym",
+          "synonyms_path" : "analysis/synonym.txt"
+        },
+        "german_stemming": {
+          "type": "stemmer",
+          "language": "german"
+        },
+        "german_stopping": {
+          "type": "stop",
+          "stopwords": "_german_"
+        }
+      },
+      "analyzer": {
+        "custom_german_analyzer": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": ["lowercase", "german_stemming", "german_stopping", "custom_synonym"]
+        }
+      }
+    }
+  },
+  "mappings" : {
+    "text" : {
+      "dynamic" : "strict",
+      "properties" : {
+        "title" : {
+          "type" : "text",
+          "fields" : {
+            "german" : {
+              "type": "text",
+              "analyzer": "custom_german_analyzer"
+            }
+          }
+        },
+        "body" : {
+          "type" : "text",
+          "fields" : {
+            "german" : {
+              "type": "text",
+              "analyzer": "custom_german_analyzer"
+            }
+          }
+        },
+        "created" : {
+          "type" : "date",
+          "format" : "YYYY-MM-dd HH:mm:ss"
+        }
+      }
+    }
+  }
+}
